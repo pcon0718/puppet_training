@@ -7,6 +7,7 @@ class apache {
       $httpd_svc = 'httpd'
       $httpd_conf = 'httpd.conf'
       $httpd_confdir = '/etc/httpd/conf'
+      $httpd_confdir_d = '/etc/httpd/conf.d'
       $httpd_docroot =  '/var/www/html'
     }
     'ubuntu': {
@@ -16,6 +17,7 @@ class apache {
       $httpd_svc = 'apache2'
       $httpd_conf = 'apache2.conf'
       $httpd_confdir = '/etc/apache2'
+      $httpd_confdir_d = '/etc/apache2/conf.d'
       $httpd_docroot = '/var/www'
     }
     default: {
