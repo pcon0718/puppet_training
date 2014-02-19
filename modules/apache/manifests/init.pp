@@ -15,4 +15,15 @@ class apache {
     ensure => file,
     source => 'puppet:///modules/apache/index.html',
   }
+
+  file {'/etc/httpd/conf/httpd.conf':
+    ensure => file,
+    source => 'puppet:///modules/apache/httpd.conf',
+  }
+
+  service {'httpd':
+    ensure    => running,
+    enable    => true,
+    subscribe => File['/etc/httpd/conf/httpd.conf'],
+  }
 }
