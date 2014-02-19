@@ -9,7 +9,7 @@ class apache {
       $httpd_confdir = '/etc/httpd/conf'
       $httpd_docroot =  '/var/www/html'
     }
-    'debian': {
+    'ubuntu': {
       $httpd_user = 'www-data'
       $httpd_group = 'www-data'
       $httpd_pkg = 'apache2'
@@ -19,7 +19,7 @@ class apache {
       $httpd_docroot = '/var/www'
     }
     default: {
-     fail ("Module ${module_name} is not supported on ${::osfamily}")
+     fail ("Module ${module_name} is not supported on ${::operatingsystem}")
     }
   }
   File {
@@ -40,8 +40,8 @@ class apache {
   }
 
   file { "${httpd_docroot}/index.html":
-    ensure => file,
-    source => 'puppet:///modules/apache/index.html',
+    ensure => present,
+    content => template('apache/index.html.erb'),
   }
 
   file { $httpd_conf:
